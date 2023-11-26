@@ -16,15 +16,15 @@ Feature: Saucedemo Shopping Page
     And the 'Zip Code' field is filled with '<zipcode>'
     When the 'Continue' button is clicked
     And Wait for '1' seconds
-    Then the price should read '<total>'
+    Then the price should read '<total price>'
     Examples:
-      | item                              | firstName | lastName | zipcode | total         |
-      | Sauce Labs Backpack               | Angel     | Dust     | 111     | Total: $32.39 |
-      | Test.allTheThings() T-Shirt (Red) | Mickey    | Mouse    | 1010    | Total: $49.66 |
-      | Sauce Labs Bolt T-Shirt           | Sponge    | Bob      | 4001    | Total: $66.93 |
-      | Sauce Labs Bike Light             | Isaac     | Newton   | 3005    | Total: $77.72 |
-      | Sauce Labs Fleece Jacket          | Ali       | Baba     | 803     | Total: $131.71|
-      | Sauce Labs Onesie                 | Mohamed   | Mobi     | 1234    | Total: $140.34|
+      | item                              | firstName | lastName | zipcode | total price        |
+      | Sauce Labs Backpack               | Angel     | Dust     | 111     | Total: $32.39      |
+      | Test.allTheThings() T-Shirt (Red) | Mickey    | Mouse    | 1010    | Total: $49.66      |
+      | Sauce Labs Bolt T-Shirt           | Sponge    | Bob      | 4001    | Total: $66.93      |
+      | Sauce Labs Bike Light             | Isaac     | Newton   | 3005    | Total: $77.72      |
+      | Sauce Labs Fleece Jacket          | Ali       | Baba     | 803     | Total: $131.71     |
+      | Sauce Labs Onesie                 | Mohamed   | Mobi     | 1234    | Total: $140.34     |
 
   Scenario Outline: Incorrect Checkout Information
     Given the 'Cart' button is clicked
