@@ -9,19 +9,20 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class HomePage {
     private static final String PAGE_URL = "https://www.saucedemo.com/";
 
     private final WebDriver driver;
-
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+    }
     @FindBy(css = "#login_button_container > div > form > div.error-message-container.error > h3")
     private WebElement loginErrorMessage;
+    @FindBy(css = "#checkout_info_container > div > form > div.checkout_info > div.error-message-container.error > h3")
+    private WebElement checkoutErrorMessage;
     @FindBy(css = "#checkout_summary_container > div > div.summary_info > div.summary_info_label.summary_total_label")
     private WebElement priceLabel;
-    @FindBy(xpath = "/html/body/div/div/div/div[2]/div/form/div[1]/div[4]/h3")
-    private WebElement checkoutErrorMessage;
     @FindBy(css = "#shopping_cart_container > a > span")
     private WebElement numberOfItemsInCart;
 
@@ -33,7 +34,7 @@ public class HomePage {
             "Zip Code", By.id("postal-code")
     );
 
-    private static final Map<String, By> AdditemButtons = Map.of(
+    private static final Map<String, By> additemButtons = Map.of(
             "Sauce Labs Backpack", By.id("add-to-cart-sauce-labs-backpack"),
             "Sauce Labs Bike Light", By.id("add-to-cart-sauce-labs-bike-light"),
             "Sauce Labs Bolt T-Shirt", By.id("add-to-cart-sauce-labs-bolt-t-shirt"),
@@ -52,81 +53,23 @@ public class HomePage {
     );
 
     private static final Map<String, By> navigationButtons = Map.of(
+            // Login Page
             "Login", By.id("login-button"),
+            // Front Page
             "Cart", By.className("shopping_cart_link"),
+            // Cart Page
             "Checkout", By.id("checkout"),
+            // Information Page
             "Continue", By.id("continue"),
 
-            // Sidebar menu
-            "Sidebar", By.id("react-burger-menu-btn"),
+            // Main
+            "Dropdown", By.id("react-burger-menu-btn"),
+            // Dropdown Menus
             "All Items", By.id("inventory_sidebar_link"),
             "About", By.id("about_sidebar_link"),
             "Logout", By.id("logout_sidebar_link"),
             "Reset App State", By.id("#reset_sidebar_link")
     );
-
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public void openPage() {
-        driver.get(PAGE_URL);
-        PageFactory.initElements(driver, this);
-    }
-
-    public void closePage() {
-        driver.quit();
-    }
-
-    public void fillOutField(String field, String text) {
-        driver.findElement(textFields.get(field)).sendKeys(text);
-    }
-
-    public void clickButton(String button) {
-        driver.findElement(navigationButtons.get(button)).click();
-    }
-
-    public String getLoginErrorMessage() {
-        return loginErrorMessage.getText();
-    }
-
-    public String getCheckoutErrorMessage() {
-        return checkoutErrorMessage.getText();
-    }
-
-    public void addItemToCart(String item) {
-//        driver.findElement(itemButtons.get(item)).click();
-
-        By addButtonLocator = AdditemButtons.get(item);
-        WebElement addButton = driver.findElement(addButtonLocator);
-
-        // Check if the item is already in the cart before clicking
-        if (addButton.isDisplayed()) {
-            addButton.click();
-        }
-    }
-
-    public void removeItemFromCart(String item) {
-//        driver.findElement(removeItemButtons.get(item)).click();
-        By removeButtonLocator = removeItemButtons.get(item);
-        WebElement removeButton = driver.findElement(removeButtonLocator);
-
-        // Check if the item is in the cart before clicking
-        if (removeButton.isDisplayed()) {
-            removeButton.click();
-        }
-    }
-    public String getTotal() {
-        return priceLabel.getText();
-    }
-
-    public String getNumOfItemInCart() {
-        return numberOfItemsInCart.getText();
-    }
-
-    public String getPageUrl() {
-        return driver.getCurrentUrl();
-    }
 
     private static final Map<String, By> sortingOptions = Map.of(
             "Price (low to high)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(3)"),
@@ -161,5 +104,64 @@ public class HomePage {
             itemNames.add(itemElement.getText());
         }
         return itemNames;
+    }
+
+    public void addItemToCart(String item) {
+//        driver.findElement(itemButtons.get(item)).click();
+
+        By addButtonLocator = additemButtons.get(item);
+        WebElement addButton = driver.findElement(addButtonLocator);
+
+        // Check if the item is already in the cart before clicking
+        if (addButton.isDisplayed()) {
+            addButton.click();
+        }
+    }
+
+    public void removeItemFromCart(String item) {
+//        driver.findElement(removeItemButtons.get(item)).click();
+        By removeButtonLocator = removeItemButtons.get(item);
+        WebElement removeButton = driver.findElement(removeButtonLocator);
+
+        // Check if the item is in the cart before clicking
+        if (removeButton.isDisplayed()) {
+            removeButton.click();
+        }
+    }
+
+    public void openPage() {
+        driver.get(PAGE_URL);
+        PageFactory.initElements(driver, this);
+    }
+
+    public void closePage() {
+        driver.quit();
+    }
+
+    public void fillOutField(String field, String text) {
+        driver.findElement(textFields.get(field)).sendKeys(text);
+    }
+
+    public void clickButton(String button) {
+        driver.findElement(navigationButtons.get(button)).click();
+    }
+
+    public String getLoginErrorMessage() {
+        return loginErrorMessage.getText();
+    }
+
+    public String getCheckoutErrorMessage() {
+        return checkoutErrorMessage.getText();
+    }
+    public String getTotal() {
+        return priceLabel.getText();
+    }
+
+    public String getNumOfItemInCart() {
+        return numberOfItemsInCart.getText();
+    }
+
+    public String getPageUrl() {
+        return driver.getCurrentUrl();
     }
 }

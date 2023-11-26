@@ -27,9 +27,10 @@ public class ShoppingStepDefs extends AbstractStepDefs {
         assertEquals(errorMessage, homePage.getCheckoutErrorMessage());
     }
 
-    @Then("the number of items should be {string}")
+    @Then("the number of items on the cart should be {string}")
     public void theNumberOfItemsShouldBe(String num) {
         assertEquals(num, homePage.getNumOfItemInCart());
     }
+
 }
 

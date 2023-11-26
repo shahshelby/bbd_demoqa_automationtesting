@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SortingSteps extends AbstractStepDefs {
 
-    @When("I sort items by {string}")
+    @When("Selecting sort items by {string}")
     public void sortItemsBy(String option) {
         homePage.selectSortingOption(option);
     }
@@ -30,7 +30,7 @@ public class SortingSteps extends AbstractStepDefs {
         assertTrue(isSorted, "Items are sorted by price (high to low)");
     }
 
-    @Then("the items should be sorted by {string} in Z to A")
+    @Then("the items should be sorted by {string}")
     public void verifyItemsSortedByZtoA(String option) {
         List<String> itemNames = homePage.getItemNames();
 
@@ -47,7 +47,7 @@ public class SortingSteps extends AbstractStepDefs {
         assertFalse(isSorted, "Items are sorted by name (Z to A)");
     }
 
-    @Then("the items should be sorted by {string} in A to Z")
+    @Then("the items should be sorted by {string}")
     public void verifyItemsSortedByAtoZ(String option) {
         List<String> itemNames = homePage.getItemNames();
 

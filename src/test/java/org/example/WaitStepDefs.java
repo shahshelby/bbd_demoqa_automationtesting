@@ -2,7 +2,7 @@ package org.example;
 import io.cucumber.java.en.And;
 
 public class WaitStepDefs extends AbstractStepDefs{
-    @And("I wait for {string} seconds")
+    @And("Wait for {string} seconds")
     public void iWaitForDurationSeconds(String duration) {
         try {
             long durationInSeconds = Long.parseLong(duration);

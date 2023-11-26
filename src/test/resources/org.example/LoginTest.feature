@@ -28,3 +28,7 @@ Feature: Saucedemo Login Page
       | performance_glitch_user  |  secret_sauce | https://www.saucedemo.com/inventory.html                 |
       | error_user               |  secret_sauce | https://www.saucedemo.com/inventory.html                 |
       | visual_user              |  secret_sauce | https://www.saucedemo.com/inventory.html                 |
+
+
+
+
