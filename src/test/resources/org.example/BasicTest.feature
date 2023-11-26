@@ -1,4 +1,4 @@
-Feature: An example
+Feature: Automation Practice Example
 
   Scenario: The example
     Given I have an example scenario
