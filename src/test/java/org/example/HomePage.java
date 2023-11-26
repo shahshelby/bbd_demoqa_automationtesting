@@ -20,7 +20,7 @@ public class HomePage {
     @FindBy(xpath = "/html/body/div/div/div/div[2]/div/form/div[1]/div[4]/h3")
     private WebElement checkoutErrorMessage;
     @FindBy(css = "#shopping_cart_container > a > span")
-    private WebElement numOfItemsInCart;
+    private WebElement numberOfItemsInCart;
 
     private static final Map<String, By> textFields = Map.of(
             "Username", By.id("user-name"),
@@ -30,7 +30,7 @@ public class HomePage {
             "Zip Code", By.id("postal-code")
     );
 
-    private static final Map<String, By> itemButtons = Map.of(
+    private static final Map<String, By> AdditemButtons = Map.of(
             "Sauce Labs Backpack", By.id("add-to-cart-sauce-labs-backpack"),
             "Sauce Labs Bike Light", By.id("add-to-cart-sauce-labs-bike-light"),
             "Sauce Labs Bolt T-Shirt", By.id("add-to-cart-sauce-labs-bolt-t-shirt"),
@@ -40,10 +40,12 @@ public class HomePage {
     );
 
     private static final Map<String, By> removeItemButtons = Map.of(
+            "Sauce Labs Bike Light Remove", By.id("remove-sauce-labs-bike-light"),
             "Sauce Labs Backpack Remove", By.id("remove-sauce-labs-backpack"),
-            "Sauce Labs Onesie Remove", By.id("remove-sauce-labs-onesie"),
+            "Sauce Labs Bolt T-Shirt", By.id("remove-sauce-labs-bolt-t-shirt"),
             "Sauce Labs Fleece Jacket Remove", By.id("remove-sauce-labs-fleece-jacket"),
-            "Sauce Labs Bike Light Remove", By.id("remove-sauce-labs-bike-light")
+            "Sauce Labs Onesie Remove", By.id("remove-sauce-labs-onesie"),
+            "Test.allTheThings() T-Shirt (Red) Remove", By.id("remove-test.allthethings()-t-shirt-(red)")
     );
 
     private static final Map<String, By> navigationButtons = Map.of(
@@ -51,6 +53,8 @@ public class HomePage {
             "Cart", By.className("shopping_cart_link"),
             "Checkout", By.id("checkout"),
             "Continue", By.id("continue"),
+
+
             // Sidebar menu
             "Sidebar", By.id("react-burger-menu-btn"),
             "All Items", By.id("inventory_sidebar_link"),
@@ -91,7 +95,7 @@ public class HomePage {
     public void addItemToCart(String item) {
 //        driver.findElement(itemButtons.get(item)).click();
 
-        By addButtonLocator = itemButtons.get(item);
+        By addButtonLocator = AdditemButtons.get(item);
         WebElement addButton = driver.findElement(addButtonLocator);
 
         // Check if the item is already in the cart before clicking
@@ -115,7 +119,7 @@ public class HomePage {
     }
 
     public String getNumOfItemInCart() {
-        return numOfItemsInCart.getText();
+        return numberOfItemsInCart.getText();
     }
 
     public String getPageUrl() {

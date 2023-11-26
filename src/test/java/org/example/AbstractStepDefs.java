@@ -15,6 +15,7 @@ public abstract class AbstractStepDefs {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         // Remove headless argument to make the browser visible
+        // Use incognito
         options.addArguments("--incognito");
         driver = new ChromeDriver(options);
 
