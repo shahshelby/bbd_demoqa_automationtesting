@@ -25,6 +25,11 @@ public class CommonStepDefs extends AbstractStepDefs {
         homePage.clickButton(button);
     }
 
+    @Then("the user is directed to {string}")
+    public void theUserIsDirectedToPAGE_URL(String PAGE_URL) {
+        assertEquals(PAGE_URL, homePage.getPageUrl());
+    }
+
     @AfterAll
     public static void cleanUp() {
         homePage.closePage();

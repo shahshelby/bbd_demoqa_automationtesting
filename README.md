@@ -1,6 +1,6 @@
-# BDD Selenium WebDriver Project for Demoqa Site
+# BDD Selenium WebDriver Project for Saucedemo Site
 
-This project utilizes Selenium WebDriver, Java, and Cucumber to automate tests for the Demoqa website.
+This project utilizes Selenium WebDriver, Java, and Cucumber to automate tests for the Saucedemo website.
 
 ## Running Tests
 
