@@ -1,6 +1,6 @@
-# BDD Selenium WebDriver Project for Ultimate Automation Site
+# BDD Selenium WebDriver Project for Demoqa Site
 
-This project utilizes Selenium WebDriver, Java, and Cucumber to automate tests for the Ultimate Automation website.
+This project utilizes Selenium WebDriver, Java, and Cucumber to automate tests for the Demoqa website.
 
 ## Running Tests
 
