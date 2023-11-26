@@ -6,7 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class HomePage {
     private static final String PAGE_URL = "https://www.saucedemo.com/";
@@ -53,7 +56,6 @@ public class HomePage {
             "Cart", By.className("shopping_cart_link"),
             "Checkout", By.id("checkout"),
             "Continue", By.id("continue"),
-
 
             // Sidebar menu
             "Sidebar", By.id("react-burger-menu-btn"),
@@ -126,4 +128,38 @@ public class HomePage {
         return driver.getCurrentUrl();
     }
 
+    private static final Map<String, By> sortingOptions = Map.of(
+            "Price (low to high)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(3)"),
+            "Price (high to low)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(4)"),
+            "Name (A to Z)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(1)"),
+            "Name (Z to A)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(2)")
+    );
+
+    public void selectSortingOption(String option) {
+        driver.findElement(sortingOptions.get(option)).click();
+    }
+
+    public List<Double> getAllItemPrices() {
+        List<Double> itemPrices = new ArrayList<>();
+        for (int i = 1; i <= 6; i++) {
+            WebElement itemPriceElement = driver.findElement(By.cssSelector("#inventory_container > div > div:nth-child(" + i + ") > div.inventory_item_description > div.pricebar > div"));
+            String priceString = itemPriceElement.getText().replace("$", "");
+            double price = parsePrice(priceString);
+            itemPrices.add(price);
+        }
+        return itemPrices;
+    }
+
+    private double parsePrice(String priceString) {
+        return Double.parseDouble(priceString.trim());
+    }
+
+    public List<String> getItemNames() {
+        List<String> itemNames = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            WebElement itemElement = driver.findElement(By.cssSelector("#item_" + i + "_title_link > div"));
+            itemNames.add(itemElement.getText());
+        }
+        return itemNames;
+    }
 }
