@@ -4,34 +4,33 @@ import com.google.common.collect.Ordering;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SortingSteps extends AbstractStepDefs {
+public class SortingStepsDefs extends AbstractStepDefs {
 
     @When("Selecting sort items by {string}")
     public void sortItemsBy(String option) {
         homePage.selectSortingOption(option);
     }
 
-    @Then("the items should be sorted by {string} in ascending order")
-    public void verifyItemsSortedByAscendingOrder(String option) {
+    @Then("the items should be sorted by ascending order")
+    public void verifyItemsSortedByAscendingOrder() {
         List<Double> itemPrices = homePage.getAllItemPrices();
 
         boolean isSorted = Ordering.natural().isOrdered(itemPrices);
         assertTrue(isSorted, "Items are sorted by price (low to high)");
     }
 
-    @Then("the items should be sorted by {string} in descending order")
-    public void verifyItemsSortedByDescendingOrder(String option) {
+    @Then("the items should be sorted by descending order")
+    public void verifyItemsSortedByDescendingOrder() {
         List<Double> itemPrices = homePage.getAllItemPrices();
 
         boolean isSorted = Ordering.natural().reverse().isOrdered(itemPrices);
         assertTrue(isSorted, "Items are sorted by price (high to low)");
     }
 
-    @Then("the items should be sorted by {string}")
-    public void verifyItemsSortedByZtoA(String option) {
+    @Then("the items should be sorted from Z to A")
+    public void verifyItemsSortedByZtoA() {
         List<String> itemNames = homePage.getItemNames();
 
         // Compare adjacent items to ensure Z to A sorting
@@ -47,8 +46,8 @@ public class SortingSteps extends AbstractStepDefs {
         assertFalse(isSorted, "Items are sorted by name (Z to A)");
     }
 
-    @Then("the items should be sorted by {string}")
-    public void verifyItemsSortedByAtoZ(String option) {
+    @Then("the items should be sorted from A to Z")
+    public void verifyItemsSortedByAtoZ() {
         List<String> itemNames = homePage.getItemNames();
 
         // Compare adjacent items to ensure A to Z sorting

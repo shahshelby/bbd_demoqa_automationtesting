@@ -6,18 +6,19 @@ import io.cucumber.java.en.When;
 
 public class AutomationPracticeSteps {
 
-    @Given("an example scenario")
-    public void anExampleScenario() {
-
+    @Given("I have an example scenario")
+    public void iHaveAnExampleScenario() {
+        // Describe the setup or initial context for the scenario
     }
 
-    @When("all step definitions are implemented")
-    public void allStepDefinitionsAreImplemented() {
-
+    @When("I implement all step definitions")
+    public void iImplementAllStepDefinitions() {
+        // Implement all the necessary steps for the scenario
     }
 
-    @Then("the scenario passes")
-    public void theScenarioPasses() {
-
+    @Then("the scenario should pass")
+    public void theScenarioShouldPass() {
+        // Verify that the scenario executes successfully
     }
 }
+

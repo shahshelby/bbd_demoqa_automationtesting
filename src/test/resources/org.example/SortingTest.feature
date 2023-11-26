@@ -1,4 +1,4 @@
-Feature: Sorting Items on Shopping Page
+Feature: Saucedemo Sorting Items on Shopping Page
 
   Background:
     Given the home page is opened
@@ -9,19 +9,19 @@ Feature: Sorting Items on Shopping Page
   Scenario: Sort items by Price Low to High
     When Selecting sort items by "Price (low to high)"
     And Wait for '1' seconds
-    Then the items should be sorted by "Price (low to high)" in ascending order
+    Then the items should be sorted by ascending order
 
   Scenario: Sort items by Price from High to Low
     When Selecting sort items by "Price (high to low)"
     And Wait for '1' seconds
-    Then the items should be sorted by "Price (high to low)" in descending order
+    Then the items should be sorted by descending order
 
   Scenario: Sort items by Name from Z to A
     When Selecting sort items by "Name (Z to A)"
     And Wait for '1' seconds
-    Then the items should be sorted by "Name (Z to A)"
+    Then the items should be sorted from Z to A
 
   Scenario: Sort items by Name from A to Z
     When Selecting sort items by "Name (A to Z)"
     And Wait for '1' seconds
-    Then the items should be sorted by "Name (A to Z)"
+    Then the items should be sorted from A to Z

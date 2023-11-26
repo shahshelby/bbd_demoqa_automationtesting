@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
 public class HomePage {
     private static final String PAGE_URL = "https://www.saucedemo.com/";
 
@@ -22,7 +23,7 @@ public class HomePage {
     @FindBy(css = "#checkout_info_container > div > form > div.checkout_info > div.error-message-container.error > h3")
     private WebElement checkoutErrorMessage;
     @FindBy(css = "#checkout_summary_container > div > div.summary_info > div.summary_info_label.summary_total_label")
-    private WebElement priceLabel;
+    private WebElement totalPrice;
     @FindBy(css = "#shopping_cart_container > a > span")
     private WebElement numberOfItemsInCart;
 
@@ -34,7 +35,7 @@ public class HomePage {
             "Zip Code", By.id("postal-code")
     );
 
-    private static final Map<String, By> additemButtons = Map.of(
+    private static final Map<String, By> ItemButtons = Map.of(
             "Sauce Labs Backpack", By.id("add-to-cart-sauce-labs-backpack"),
             "Sauce Labs Bike Light", By.id("add-to-cart-sauce-labs-bike-light"),
             "Sauce Labs Bolt T-Shirt", By.id("add-to-cart-sauce-labs-bolt-t-shirt"),
@@ -43,7 +44,7 @@ public class HomePage {
             "Test.allTheThings() T-Shirt (Red)", By.id("add-to-cart-test.allthethings()-t-shirt-(red)")
     );
 
-    private static final Map<String, By> removeItemButtons = Map.of(
+    private static final Map<String, By> RemoveItem = Map.of(
             "Sauce Labs Bike Light Remove", By.id("remove-sauce-labs-bike-light"),
             "Sauce Labs Backpack Remove", By.id("remove-sauce-labs-backpack"),
             "Sauce Labs Bolt T-Shirt", By.id("remove-sauce-labs-bolt-t-shirt"),
@@ -59,10 +60,10 @@ public class HomePage {
             "Cart", By.className("shopping_cart_link"),
             // Cart Page
             "Checkout", By.id("checkout"),
-            // Information Page
+            // Checkout Information Page
             "Continue", By.id("continue"),
 
-            // Main
+            // Dropdown Button
             "Dropdown", By.id("react-burger-menu-btn"),
             // Dropdown Menus
             "All Items", By.id("inventory_sidebar_link"),
@@ -71,11 +72,18 @@ public class HomePage {
             "Reset App State", By.id("#reset_sidebar_link")
     );
 
+    private static final Map<String, By> navigationLinks = Map.of(
+            // Footer Area Social Links
+            "Twitter", By.cssSelector("#page_wrapper > footer > ul > li.social_twitter > a"),
+            "Facebook", By.cssSelector("#page_wrapper > footer > ul > li.social_facebook > a"),
+            "Linkedin", By.cssSelector("#page_wrapper > footer > ul > li.social_linkedin > a")
+    );
+
     private static final Map<String, By> sortingOptions = Map.of(
-            "Price (low to high)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(3)"),
-            "Price (high to low)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(4)"),
             "Name (A to Z)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(1)"),
-            "Name (Z to A)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(2)")
+            "Name (Z to A)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(2)"),
+            "Price (low to high)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(3)"),
+            "Price (high to low)", By.cssSelector("#header_container > div.header_secondary_container > div > span > select > option:nth-child(4)")
     );
 
     public void selectSortingOption(String option) {
@@ -107,31 +115,21 @@ public class HomePage {
     }
 
     public void addItemToCart(String item) {
-//        driver.findElement(itemButtons.get(item)).click();
-
-        By addButtonLocator = additemButtons.get(item);
-        WebElement addButton = driver.findElement(addButtonLocator);
-
-        // Check if the item is already in the cart before clicking
-        if (addButton.isDisplayed()) {
-            addButton.click();
-        }
+        driver.findElement(ItemButtons.get(item)).click();
     }
 
     public void removeItemFromCart(String item) {
-//        driver.findElement(removeItemButtons.get(item)).click();
-        By removeButtonLocator = removeItemButtons.get(item);
-        WebElement removeButton = driver.findElement(removeButtonLocator);
-
-        // Check if the item is in the cart before clicking
-        if (removeButton.isDisplayed()) {
-            removeButton.click();
-        }
+        driver.findElement(RemoveItem.get(item)).click();
     }
 
     public void openPage() {
         driver.get(PAGE_URL);
         PageFactory.initElements(driver, this);
+    }
+
+    // Check new tab open for navigationLinks
+    public boolean isNewTabOpened() {
+        return driver.getWindowHandles().size() > 1;
     }
 
     public void closePage() {
@@ -146,15 +144,19 @@ public class HomePage {
         driver.findElement(navigationButtons.get(button)).click();
     }
 
+    public void clickLink(String button) {
+        driver.findElement(navigationLinks.get(button)).click();
+    }
+
+
     public String getLoginErrorMessage() {
         return loginErrorMessage.getText();
     }
-
     public String getCheckoutErrorMessage() {
         return checkoutErrorMessage.getText();
     }
     public String getTotal() {
-        return priceLabel.getText();
+        return totalPrice.getText();
     }
 
     public String getNumOfItemInCart() {

@@ -2,6 +2,8 @@ package org.example;
 import io.cucumber.java.en.And;
 
 public class WaitStepDefs extends AbstractStepDefs{
+
+    // For Website transition delay or Launching new tabs
     @And("Wait for {string} seconds")
     public void iWaitForDurationSeconds(String duration) {
         try {

@@ -6,10 +6,16 @@ Feature: Saucedemo Dropdown Menu
     And the 'Password' field is filled with 'secret_sauce'
     And the 'Login' button is clicked
 
-  Scenario: Logout Dropdown Menu Functionality
+  Scenario Outline: Dropdown Menu Functionality
     Given the 'Dropdown' button is clicked
     And Wait for '1' seconds
-    And the 'Logout' button is clicked
-    Then the user is directed to 'https://www.saucedemo.com/'
+    When the '<selection>' button is clicked
+    Then the user is directed to '<PAGE_URL>'
+    Examples:
+      | selection   | PAGE_URL                                 |
+      | All Items   | https://www.saucedemo.com/inventory.html |
+      | About       | https://saucelabs.com/                   |
+      | Logout      | https://www.saucedemo.com/               |
+
 
 

@@ -7,7 +7,7 @@ Feature: Saucedemo Shopping Page
     And the 'Login' button is clicked
 
 
-  Scenario Outline: Purchase Flow with Checking out
+  Scenario Outline: Purchase Flow and Checkout
     Given the '<item>' is added to the cart
     And the 'Cart' button is clicked
     And the 'Checkout' button is clicked
@@ -17,7 +17,6 @@ Feature: Saucedemo Shopping Page
     When the 'Continue' button is clicked
     And Wait for '1' seconds
     Then the price should read '<total>'
-
     Examples:
       | item                              | firstName | lastName | zipcode | total         |
       | Sauce Labs Backpack               | Angel     | Dust     | 111     | Total: $32.39 |
@@ -27,7 +26,7 @@ Feature: Saucedemo Shopping Page
       | Sauce Labs Fleece Jacket          | Ali       | Baba     | 803     | Total: $131.71|
       | Sauce Labs Onesie                 | Mohamed   | Mobi     | 1234    | Total: $140.34|
 
-  Scenario Outline: Deleting Item In Cart
+  Scenario Outline: Removing Items From Cart
     Given the '<item>' is removed from the cart
     And Wait for '1' seconds
     Then the number of items on the cart should be '<number>'
@@ -40,7 +39,7 @@ Feature: Saucedemo Shopping Page
       | Test.allTheThings() T-Shirt (Red) Remove      | 1      |
 
 
-  Scenario Outline: Incorrect Checkout Information Given
+  Scenario Outline: Incorrect Checkout Information
     Given the '<item>' is added to the cart
     And the 'Cart' button is clicked
     And the 'Checkout' button is clicked
@@ -50,7 +49,6 @@ Feature: Saucedemo Shopping Page
     When the 'Continue' button is clicked
     And Wait for '1' seconds
     Then the '<errorMessage>' checkout message is shown
-
     Examples:
       | item                              | firstName | lastName | zipcode | errorMessage                   |
       | Sauce Labs Onesie                 |           |          |         | Error: First Name is required  |

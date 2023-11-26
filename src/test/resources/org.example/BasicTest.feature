@@ -1,6 +1,6 @@
 Feature: An example
 
   Scenario: The example
-    Given an example scenario
-    When all step definitions are implemented
-    Then the scenario passes
+    Given I have an example scenario
+    When I implement all step definitions
+    Then the scenario should pass
