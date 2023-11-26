@@ -26,6 +26,23 @@ Feature: Saucedemo Shopping Page
       | Sauce Labs Fleece Jacket          | Ali       | Baba     | 803     | Total: $131.71|
       | Sauce Labs Onesie                 | Mohamed   | Mobi     | 1234    | Total: $140.34|
 
+  Scenario Outline: Incorrect Checkout Information
+    Given the 'Cart' button is clicked
+    And the 'Checkout' button is clicked
+    And the 'First Name' field is filled with '<firstName>'
+    And the 'Last Name' field is filled with '<lastName>'
+    And the 'Zip Code' field is filled with '<zipcode>'
+    When the 'Continue' button is clicked
+    And Wait for '1' seconds
+    Then the '<errorMessage>' checkout message is shown
+    Examples:
+      | firstName | lastName | zipcode | errorMessage                   |
+      |           |          |         | Error: First Name is required  |
+      |           | Dust     | 111     | Error: First Name is required  |
+      | Jeff      |          | 1010    | Error: Last Name is required   |
+      | Sponge    | Bob      |         | Error: Postal Code is required |
+
+
   Scenario Outline: Removing Items From Cart
     Given the '<item>' is removed from the cart
     And Wait for '1' seconds
@@ -37,21 +54,3 @@ Feature: Saucedemo Shopping Page
       | Sauce Labs Fleece Jacket Remove               | 3      |
       | Sauce Labs Backpack Remove                    | 2      |
       | Test.allTheThings() T-Shirt (Red) Remove      | 1      |
-
-
-  Scenario Outline: Incorrect Checkout Information
-    Given the '<item>' is added to the cart
-    And the 'Cart' button is clicked
-    And the 'Checkout' button is clicked
-    And the 'First Name' field is filled with '<firstName>'
-    And the 'Last Name' field is filled with '<lastName>'
-    And the 'Zip Code' field is filled with '<zipcode>'
-    When the 'Continue' button is clicked
-    And Wait for '1' seconds
-    Then the '<errorMessage>' checkout message is shown
-    Examples:
-      | item                              | firstName | lastName | zipcode | errorMessage                   |
-      | Sauce Labs Onesie                 |           |          |         | Error: First Name is required  |
-      | Sauce Labs Backpack               |           | Dust     | 111     | Error: First Name is required  |
-      | Test.allTheThings() T-Shirt (Red) | Jeff      |          | 1010    | Error: Last Name is required   |
-      | Sauce Labs Bike Light             | Sponge    | Bob      |         | Error: Postal Code is required |
