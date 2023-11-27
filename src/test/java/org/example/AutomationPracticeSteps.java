@@ -1,24 +1,15 @@
 package org.example;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import static org.example.AbstractStepDefs.homePage;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AutomationPracticeSteps {
 
-    @Given("I have an example scenario")
-    public void iHaveAnExampleScenario() {
-        // Describe the setup or initial context for the scenario
-    }
-
-    @When("I implement all step definitions")
-    public void iImplementAllStepDefinitions() {
-        // Implement all the necessary steps for the scenario
-    }
-
-    @Then("the scenario should pass")
-    public void theScenarioShouldPass() {
-        // Verify that the scenario executes successfully
+    // Testing title of webpage
+    @Then("the page title should be {string}")
+    public void thePageTitleShouldBe(String expectedTitle) {
+        assertEquals(expectedTitle, homePage.getTitle());
     }
 }
 

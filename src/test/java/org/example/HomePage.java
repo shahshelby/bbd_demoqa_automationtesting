@@ -166,4 +166,7 @@ public class HomePage {
     public String getPageUrl() {
         return driver.getCurrentUrl();
     }
+
+    public String getTitle() { return driver.getTitle();
+    }
 }

@@ -17,6 +17,6 @@ Feature: Saucedemo Dropdown Menu
       | About       | https://saucelabs.com/                   |
       | Logout      | https://www.saucedemo.com/               |
 
-## Reset-App-State
+## Reset-App-State buggy -?-
 
 
