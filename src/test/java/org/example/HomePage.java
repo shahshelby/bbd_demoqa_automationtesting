@@ -76,7 +76,7 @@ public class HomePage {
             // Footer Area Social Links
             "Twitter", By.cssSelector("#page_wrapper > footer > ul > li.social_twitter > a"),
             "Facebook", By.cssSelector("#page_wrapper > footer > ul > li.social_facebook > a"),
-            "Linkedin", By.cssSelector("#page_wrapper > footer > ul > li.social_linkedin > a")
+            "LinkedIn", By.cssSelector("#page_wrapper > footer > ul > li.social_linkedin > a")
     );
 
     private static final Map<String, By> sortingOptions = Map.of(
@@ -128,6 +128,7 @@ public class HomePage {
     }
 
     // Check new tab open for navigationLinks
+    // More than 1 tab open
     public boolean isNewTabOpened() {
         return driver.getWindowHandles().size() > 1;
     }

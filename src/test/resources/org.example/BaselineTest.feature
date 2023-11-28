@@ -1,4 +1,4 @@
-Feature: Validate Pages title
+Feature: Saucedemo Pages title
 
   ## For the website saucedemo.com, the page title remains constant across all functionalities or aspects of the website.
   Background:
@@ -14,4 +14,4 @@ Feature: Validate Pages title
     When the 'Login' button is clicked
     Then the page title should be "Swag Labs"
 
-  ## Redundant testing
+## Redundant testing -?-
