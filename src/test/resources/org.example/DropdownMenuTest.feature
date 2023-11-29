@@ -12,10 +12,10 @@ Feature: Saucedemo Dropdown Menu
     When the '<selection>' button is clicked
     Then the user is directed to '<PAGE_URL>'
     Examples:
-      | selection   | PAGE_URL                                 |
-      | All Items   | https://www.saucedemo.com/inventory.html |
-      | About       | https://saucelabs.com/                   |
-      | Logout      | https://www.saucedemo.com/               |
+      | selection         | PAGE_URL                                 |
+      | All Items         | https://www.saucedemo.com/inventory.html |
+      | About             | https://saucelabs.com/                   |
+      | Logout            | https://www.saucedemo.com/               |
 
 ## Reset-App-State buggy -?-
 

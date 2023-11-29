@@ -8,10 +8,10 @@ Feature: Saucedemo Pages title
     Then the page title should be "Swag Labs"
 
   Scenario: Verify title of the Front Page
-    Given the 'Username' field is filled with '<username>'
-    And the 'Username' field is filled with 'standard_user'
+    Given the 'Username' field is filled with 'standard_user'
     And the 'Password' field is filled with 'secret_sauce'
     When the 'Login' button is clicked
     Then the page title should be "Swag Labs"
+
 
 ## Redundant testing -?-
